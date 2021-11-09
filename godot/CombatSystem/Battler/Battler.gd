@@ -41,6 +41,7 @@ onready var _status_effect_container: StatusEffectContainer = $StatusEffectConta
 
 
 func _ready() -> void:
+	print("初始化双方状态信息")
 	assert(stats is BattlerStats)
 	stats = stats.duplicate()
 	stats.reinitialize()
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 
 # Allows the AI brain to get a reference to all battlers on the field.
 func setup(battlers: Array) -> void:
+	print("如果有AI则实例化AI")
 	if ai_scene:
 		_ai_instance = ai_scene.instance()
 		_ai_instance.setup(self, battlers)
@@ -146,6 +148,7 @@ func _on_BattlerAnim_animation_finished(anim_name) -> void:
 
 
 func _on_BattlerStats_health_depleted() -> void:
+	print("状态健康耗尽")
 	set_is_active(false)
 	if not is_party_member:
 		set_is_selectable(false)

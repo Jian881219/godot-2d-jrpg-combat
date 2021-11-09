@@ -8,6 +8,7 @@ onready var _anim_player: AnimationPlayer = $AnimationPlayer
 # Arguments:
 # - battlers: Array[Battlers]
 func setup(battlers: Array) -> void:
+	print("初始化双方hud")
 	for battler in battlers:
 		var battler_hud: UIBattlerHUD = UIBattlerHUD.instance()
 		add_child(battler_hud)

@@ -22,9 +22,6 @@ layer = -10
 [node name="Steppes" type="Sprite" parent="Background"]
 position = Vector2( 960.698, 541.614 )
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="ActiveTurnQueue" type="Node2D" parent="."]
 script = ExtResource( 5 )
@@ -56,4 +53,5 @@ margin_top = 232.0
 margin_bottom = -164.0
 
 [node name="UIDamageLabelBuilder" parent="UI" instance=ExtResource( 3 )]
+
 [connection signal="combat_ended" from="." to="UI" method="_on_CombatDemo_combat_ended"]

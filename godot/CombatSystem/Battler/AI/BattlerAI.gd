@@ -17,6 +17,7 @@ var _weaknesses_dict := {}
 
 
 func setup(actor: Battler, battlers: Array) -> void:
+	print("识别友方和敌方:"+actor.name)
 	_actor = actor
 	for battler in battlers:
 		var is_opponent: bool = battler.is_party_member != actor.is_party_member
@@ -140,6 +141,7 @@ func _is_health_above(battler: Battler, ratio: float) -> bool:
 
 # Initializes the `_weaknesses_dict`
 func _calculate_weaknesses() -> void:
+	print("计算虚弱目标")
 	for action in _actor.actions:
 		_weaknesses_dict[action] = []
 		for opponent in _opponents:

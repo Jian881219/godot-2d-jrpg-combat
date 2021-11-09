@@ -38,6 +38,7 @@ var _modifiers := {}
 
 # Initializes keys in the modifiers dict, ensuring they all exist.
 func _init() -> void:
+	print("初始化状态字典")
 	for stat in UPGRADABLE_STATS:
 		_modifiers[stat] = {}
 

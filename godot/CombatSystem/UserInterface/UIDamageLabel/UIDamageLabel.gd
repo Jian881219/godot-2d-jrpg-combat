@@ -19,6 +19,7 @@ onready var _tween: Tween = $Tween
 
 
 func setup(type: int, start_global_position: Vector2, amount: int) -> void:
+	print("初始化双方头上伤害值")
 	global_position = start_global_position
 	_amount = amount
 

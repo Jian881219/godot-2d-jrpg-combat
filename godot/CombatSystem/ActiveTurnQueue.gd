@@ -25,6 +25,7 @@ onready var battlers := get_children()
 
 
 func _ready() -> void:
+	print("***初始化回合战斗队列-开始***")
 	connect("player_turn_finished", self, "_on_player_turn_finished")
 	for battler in battlers:
 		battler.setup(battlers)
@@ -33,6 +34,7 @@ func _ready() -> void:
 			_party_members.append(battler)
 		else:
 			_opponents.append(battler)
+	print("***初始化回合战斗队列-结束***")
 
 
 func set_is_active(value: bool) -> void:
@@ -48,6 +50,7 @@ func set_time_scale(value: float) -> void:
 
 
 func _play_turn(battler: Battler) -> void:
+	print(battler.name+":开始行动")
 	battler.stats.energy += 1
 
 	var action_data: ActionData
@@ -89,6 +92,8 @@ func _play_turn(battler: Battler) -> void:
 
 	if battler.is_player_controlled():
 		emit_signal("player_turn_finished")
+	
+	print(battler.name+":行动结束")
 
 
 func _player_select_action_async(battler: Battler) -> ActionData:
@@ -109,6 +114,7 @@ func _player_select_targets_async(_action: ActionData, opponents: Array) -> Arra
 
 
 func _on_player_turn_finished() -> void:
+	print("--玩家回合结束--")
 	if _queue_player.empty():
 		_is_player_playing = false
 	else:
@@ -116,6 +122,7 @@ func _on_player_turn_finished() -> void:
 
 
 func _on_Battler_ready_to_act(battler: Battler) -> void:
+	print("准备行动:"+ battler.name)
 	if battler.is_player_controlled() and _is_player_playing:
 		_queue_player.append(battler)
 	else:
