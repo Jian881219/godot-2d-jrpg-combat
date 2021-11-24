@@ -10,6 +10,7 @@ energy_cost = 3
 element = 4
 is_targeting_self = false
 is_targeting_all = false
+is_add = false
 readiness_saved = 0.0
 damage_multiplier = 0.7
 hit_chance = 100.0

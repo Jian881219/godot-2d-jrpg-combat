@@ -13,6 +13,7 @@ export var energy_cost := 0
 export (Elements) var element := Elements.NONE
 export var is_targeting_self := false
 export var is_targeting_all := false
+export var is_add := false
 export var readiness_saved := 0.0
 
 

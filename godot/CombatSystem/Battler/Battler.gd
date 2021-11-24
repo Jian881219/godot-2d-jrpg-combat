@@ -12,7 +12,7 @@ signal animation_finished(anim_name)
 signal action_finished
 signal readiness_changed(new_value)
 signal selection_toggled(value)
-signal damage_taken(amount)
+signal damage_taken(amount, is_add)
 signal hit_missed
 
 export var stats: Resource
@@ -77,13 +77,23 @@ func act(action) -> void:
 
 # Applies a hit object to the battler, dealing damage or status effects.
 func take_hit(hit: Hit) -> void:
+	if hit.is_add:
+		_take_add(hit.damage)
+		emit_signal("damage_taken", hit.damage, true)
+		if hit.effect:
+			_apply_status_effect(hit.effect)
+		return
+
 	if hit.does_hit():
 		_take_damage(hit.damage)
-		emit_signal("damage_taken", hit.damage)
+		emit_signal("damage_taken", hit.damage, false)
 		if hit.effect:
 			_apply_status_effect(hit.effect)
 	else:
 		emit_signal("hit_missed")
+
+
+# func take_add()
 
 
 func get_ai() -> Node:
@@ -129,6 +139,13 @@ func _take_damage(amount: int) -> void:
 	if stats.health > 0:
 		battler_anim.play("take_damage")
 
+
+func _take_add(amount: int) -> void:
+	if stats.health + amount >= stats.max_health:
+		stats.health = stats.max_health
+	else:
+		stats.health += amount
+	
 
 # effect: StatusEffect
 func _apply_status_effect(effect) -> void:

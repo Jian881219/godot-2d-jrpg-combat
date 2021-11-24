@@ -6,13 +6,18 @@ extends Reference
 var damage := 0
 var hit_chance: float
 var effect: StatusEffect
+var is_add := false
 
 
-func _init(_damage: int, _hit_chance := 100.0, _effect: StatusEffect = null) -> void:
+func _init(_damage: int, _hit_chance := 100.0, _is_add := false, _effect: StatusEffect = null) -> void:
 	damage = _damage
 	hit_chance = _hit_chance
 	effect = _effect
+	is_add = _is_add
 
 
 func does_hit() -> bool:
-	return randf() * 100.0 < hit_chance
+	if is_add :
+		return true
+	else:
+		return randf() * 100.0 < hit_chance

@@ -65,10 +65,11 @@ func _play_turn(battler: Battler) -> void:
 	if battler.is_player_controlled():
 		battler.is_selected = true
 		_is_player_playing = true
-		set_time_scale(0.05)
+		set_time_scale(0.00)
 		var is_selection_complete := false
 		# Wait for the player to select a valid action and target(s).
 		while not is_selection_complete:
+			print("选择技能和目标")
 			action_data = yield(_player_select_action_async(battler), "completed")
 			if action_data.is_targeting_self:
 				targets = [battler]

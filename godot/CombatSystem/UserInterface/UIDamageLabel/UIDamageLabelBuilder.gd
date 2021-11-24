@@ -12,9 +12,10 @@ func setup(battlers: Array) -> void:
 		battler.connect("hit_missed", self, "_on_Battler_hit_missed", [battler])
 		
 
-func _on_Battler_damage_taken(amount: int, target: Battler) -> void:
+func _on_Battler_damage_taken(amount: int, is_add: bool, target: Battler) -> void:
 	var label: UIDamageLabel = damage_label_scene.instance()
-	label.setup(UIDamageLabel.Types.DAMAGE, target.battler_anim.get_top_anchor_global_position(), amount)
+	var label_type = UIDamageLabel.Types.HEAL if is_add else UIDamageLabel.Types.DAMAGE
+	label.setup(label_type, target.battler_anim.get_top_anchor_global_position(), amount)
 	add_child(label)
 
 

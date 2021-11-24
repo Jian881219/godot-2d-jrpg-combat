@@ -17,6 +17,7 @@ var is_active := true setget set_is_active
 
 # Adds a new instance of a status effect as a child, ensuring the effects don't stack past
 # `MAX_STACKS`.
+# 添加buff
 func add(effect: StatusEffect) -> void:
 	if effect.can_stack():
 		if _has_maximum_stacks_of(effect.id):
@@ -27,6 +28,7 @@ func add(effect: StatusEffect) -> void:
 
 
 # Removes all stacks of an effect of a given type.
+# 根据id删除buff
 func remove_type(id: String) -> void:
 	for effect in get_children():
 		if effect.id == id:
@@ -34,23 +36,27 @@ func remove_type(id: String) -> void:
 
 
 # Removes all status effects.
+# 删除所有buff
 func remove_all() -> void:
 	for effect in get_children():
 		effect.expire()
 
 
+# 刷新buff时间
 func set_time_scale(value: float) -> void:
 	time_scale = value
 	for effect in get_children():
 		effect.time_scale = time_scale
 
 
+# 激活buff
 func set_is_active(value) -> void:
 	is_active = value
 	for effect in get_children():
 		effect.is_active = is_active
 
 
+# 是否达到最大堆叠数
 func _has_maximum_stacks_of(id: String) -> bool:
 	var count := 0
 	for effect in get_children():
@@ -58,7 +64,8 @@ func _has_maximum_stacks_of(id: String) -> bool:
 			count += 1
 	return count == MAX_STACKS
 
-
+	
+# 删除时间最短的buff
 func _remove_effect_expiring_the_soonest(id: String) -> void:
 	var to_remove: StatusEffect
 	var smallest_time: float = INF
