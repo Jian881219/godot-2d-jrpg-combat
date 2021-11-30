@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource( 1 )
-effect = "slow"
-duration_seconds = 20.0
-effect_power = 20
-effect_rate = 0.6
-is_ticking = false
-ticking_interval = 4.0
-ticking_damage = 3
+effect = "add"
+duration_seconds = 18.0
+effect_power = 0
+effect_rate = 0.0
+is_ticking = true
+ticking_interval = 6.0
+ticking_damage = 2
 is_add = false

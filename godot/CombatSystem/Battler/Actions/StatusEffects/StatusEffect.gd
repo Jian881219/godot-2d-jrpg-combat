@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 	if is_ticking:
 		var old_clock = _ticking_clock
-		_ticking_clock = wrapf(_ticking_clock - delta * time_scale, 0.0, ticking_interval)
+		_ticking_clock = wrapf(_ticking_clock - delta * time_scale, 0.0, ticking_interval-0.5)
 		if _ticking_clock > old_clock:
 			_apply()
 

@@ -28,7 +28,7 @@ func _add() -> bool:
 		var status: StatusEffect = StatusEffectBuilder.create_status_effect(
 			target, _data.status_effect
 		)
-		var hit := Hit.new(100, 1, true, status)
+		var hit := Hit.new(5, 1, true, status)
 		anim.connect("triggered", self, "_on_BattlerAnim_triggered", [target, hit])
 		anim.play("attack")
 		yield(_actor, "animation_finished")

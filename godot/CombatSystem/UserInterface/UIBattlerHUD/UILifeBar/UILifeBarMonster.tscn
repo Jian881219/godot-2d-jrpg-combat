@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UILifeBar/UILifeBar.gd" type="Script" id=1]
+[ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UILifeBar/UILifeBarMonster.gd" type="Script" id=1]
 [ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UILifeBar/life_bar_fill.png" type="Texture" id=2]
 [ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UILifeBar/life_bar_bg.png" type="Texture" id=3]
 

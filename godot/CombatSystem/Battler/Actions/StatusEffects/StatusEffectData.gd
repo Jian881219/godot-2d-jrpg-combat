@@ -8,10 +8,14 @@ export var effect_rate := 0.5
 export var is_ticking := false
 export var ticking_interval := 4.0
 export var ticking_damage := 3
-
+export var is_add := false
 
 func calculate_total_damage() -> int:
 	var damage := 0
+	
+	if is_add:
+		return damage
+	
 	if is_ticking:
 		damage += int(duration_seconds / ticking_interval * ticking_damage)
 	return damage

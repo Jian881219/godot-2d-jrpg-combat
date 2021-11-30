@@ -6,6 +6,7 @@ const StatusEffects := {
 	haste = StatusEffectHaste,
 	slow = StatusEffectSlow,
 	bug = StatusEffectBug,
+	add = StatusEffectAdd,
 }
 
 static func create_status_effect(target, data):

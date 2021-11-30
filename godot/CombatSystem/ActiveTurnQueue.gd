@@ -65,7 +65,7 @@ func _play_turn(battler: Battler) -> void:
 	if battler.is_player_controlled():
 		battler.is_selected = true
 		_is_player_playing = true
-		set_time_scale(0.00)
+		set_time_scale(0.50)
 		var is_selection_complete := false
 		# Wait for the player to select a valid action and target(s).
 		while not is_selection_complete:

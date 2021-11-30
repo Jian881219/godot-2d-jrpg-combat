@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://CombatSystem/Battler/Actions/StatusEffects/StatusEffect.gd"
 }, {
 "base": "StatusEffect",
+"class": "StatusEffectAdd",
+"language": "GDScript",
+"path": "res://CombatSystem/Battler/Actions/StatusEffects/StatusEffectAdd.gd"
+}, {
+"base": "StatusEffect",
 "class": "StatusEffectBug",
 "language": "GDScript",
 "path": "res://CombatSystem/Battler/Actions/StatusEffects/StatusEffectBug.gd"
@@ -159,6 +164,7 @@ _global_script_class_icons={
 "Formulas": "",
 "Hit": "",
 "StatusEffect": "",
+"StatusEffectAdd": "",
 "StatusEffectBug": "",
 "StatusEffectBuilder": "",
 "StatusEffectContainer": "",

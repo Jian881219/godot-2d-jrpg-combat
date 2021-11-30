@@ -38,13 +38,15 @@ var _ai_instance = null
 
 onready var battler_anim: BattlerAnim = $BattlerAnim
 onready var _status_effect_container: StatusEffectContainer = $StatusEffectContainer
-
+onready var _life_bar: TextureProgress = $UILifeBar
 
 func _ready() -> void:
 	print("初始化双方状态信息")
 	assert(stats is BattlerStats)
 	stats = stats.duplicate()
 	stats.reinitialize()
+	if _life_bar != null:
+		_life_bar.setup(stats.max_health, stats.max_health)
 	stats.connect("health_depleted", self, "_on_BattlerStats_health_depleted")
 
 
@@ -138,6 +140,8 @@ func _take_damage(amount: int) -> void:
 	stats.health -= amount
 	if stats.health > 0:
 		battler_anim.play("take_damage")
+	if _life_bar != null:
+		_life_bar.setup(stats.health, stats.max_health)
 
 
 func _take_add(amount: int) -> void:
@@ -145,6 +149,8 @@ func _take_add(amount: int) -> void:
 		stats.health = stats.max_health
 	else:
 		stats.health += amount
+	if _life_bar != null:
+		_life_bar.setup(stats.health, stats.max_health)
 	
 
 # effect: StatusEffect
