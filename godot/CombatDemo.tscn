@@ -46,6 +46,7 @@ stats = ExtResource( 7 )
 script = ExtResource( 2 )
 
 [node name="UITurnBar" parent="UI" instance=ExtResource( 12 )]
+visible = false
 margin_left = 0.697998
 margin_top = 1.61401
 margin_right = 0.697998

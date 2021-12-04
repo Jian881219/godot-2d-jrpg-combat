@@ -2,7 +2,7 @@
 class_name ActiveTurnQueue
 extends Node
 
-signal player_turn_finished
+# signal player_turn_finished
 
 export var UIActionMenuScene: PackedScene
 export var SelectArrow: PackedScene
@@ -20,21 +20,25 @@ var _party_members := []
 var _opponents := []
 
 var _is_player_playing := false
+var _is_player_turn := false
+
+var running = true
 
 onready var battlers := get_children()
 
 
 func _ready() -> void:
-	print("***初始化回合战斗队列-开始***")
-	connect("player_turn_finished", self, "_on_player_turn_finished")
+	# print("***初始化回合战斗队列-开始***")
+	# connect("player_turn_finished", self, "_on_player_turn_finished")
 	for battler in battlers:
 		battler.setup(battlers)
-		battler.connect("ready_to_act", self, "_on_Battler_ready_to_act", [battler])
+		# battler.connect("ready_to_act", self, "_on_Battler_ready_to_act", [battler])
 		if battler.is_party_member:
 			_party_members.append(battler)
+			_queue_player.append(battler)
 		else:
 			_opponents.append(battler)
-	print("***初始化回合战斗队列-结束***")
+	# print("***初始化回合战斗队列-结束***")
 
 
 func set_is_active(value: bool) -> void:
@@ -50,7 +54,7 @@ func set_time_scale(value: float) -> void:
 
 
 func _play_turn(battler: Battler) -> void:
-	print(battler.name+":开始行动")
+	# print(battler.name+":开始行动")
 	battler.stats.energy += 1
 
 	var action_data: ActionData
@@ -62,14 +66,14 @@ func _play_turn(battler: Battler) -> void:
 		if opponent.is_selectable:
 			potential_targets.append(opponent)
 
+	set_time_scale(0)
 	if battler.is_player_controlled():
 		battler.is_selected = true
 		_is_player_playing = true
-		set_time_scale(0.50)
 		var is_selection_complete := false
 		# Wait for the player to select a valid action and target(s).
 		while not is_selection_complete:
-			print("选择技能和目标")
+			# print("选择技能和目标")
 			action_data = yield(_player_select_action_async(battler), "completed")
 			if action_data.is_targeting_self:
 				targets = [battler]
@@ -79,7 +83,6 @@ func _play_turn(battler: Battler) -> void:
 				)
 				Events.emit_signal("player_target_selection_done")
 			is_selection_complete = action_data != null && targets != []
-		set_time_scale(1.0)
 		battler.is_selected = false
 	else:
 		var result: Dictionary = battler.get_ai().choose()
@@ -91,11 +94,41 @@ func _play_turn(battler: Battler) -> void:
 	yield(battler, "action_finished")
 
 
-	if battler.is_player_controlled():
-		emit_signal("player_turn_finished")
-	
-	print(battler.name+":行动结束")
+	# if battler.is_player_controlled():
+		# emit_signal("player_turn_finished")
 
+	set_time_scale(1.0)
+
+
+func Battle():
+	while(running):
+		yield(start_turn(), "completed")
+
+			
+func start_turn() -> void:
+	var _player_queue := []
+	var _enemy_queue := []
+
+	for battler in battlers:
+		if not battler.is_fallen():
+			if battler.is_player_controlled():
+				_player_queue.append(battler)
+			else:
+				_enemy_queue.append(battler)
+	
+	if _player_queue.size() <= 0 || _enemy_queue.size() <= 0:
+		running = false
+		return
+
+	if _is_player_turn:
+		for battler in _player_queue:
+			yield(_play_turn(battler), "completed")
+		_is_player_turn = false
+	else:
+		for battler in _enemy_queue:
+			yield(_play_turn(battler), "completed")
+		_is_player_turn = true
+	
 
 func _player_select_action_async(battler: Battler) -> ActionData:
 	var action_menu: UIActionMenu = UIActionMenuScene.instance()
@@ -114,17 +147,17 @@ func _player_select_targets_async(_action: ActionData, opponents: Array) -> Arra
 	return targets
 
 
-func _on_player_turn_finished() -> void:
-	print("--玩家回合结束--")
-	if _queue_player.empty():
-		_is_player_playing = false
-	else:
-		_play_turn(_queue_player.pop_front())
+# func _on_player_turn_finished() -> void:
+# 	# print("--玩家回合结束--")
+# 	if _queue_player.empty():
+# 		_is_player_playing = false
+# 	else:
+# 		_play_turn(_queue_player.pop_front())
 
 
-func _on_Battler_ready_to_act(battler: Battler) -> void:
-	print("准备行动:"+ battler.name)
-	if battler.is_player_controlled() and _is_player_playing:
-		_queue_player.append(battler)
-	else:
-		_play_turn(battler)
+# func _on_Battler_ready_to_act(battler: Battler) -> void:
+# 	# print("准备行动:"+ battler.name)
+# 	if battler.is_player_controlled() and _is_player_playing:
+# 		_queue_player.append(battler)
+# 	else:
+# 		_play_turn(battler)

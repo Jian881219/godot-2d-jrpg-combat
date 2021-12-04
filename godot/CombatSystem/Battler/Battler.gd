@@ -41,7 +41,7 @@ onready var _status_effect_container: StatusEffectContainer = $StatusEffectConta
 onready var _life_bar: TextureProgress = $UILifeBar
 
 func _ready() -> void:
-	print("初始化双方状态信息")
+	# print("初始化双方状态信息")
 	assert(stats is BattlerStats)
 	stats = stats.duplicate()
 	stats.reinitialize()
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 
 # Allows the AI brain to get a reference to all battlers on the field.
 func setup(battlers: Array) -> void:
-	print("如果有AI则实例化AI")
+	# print("如果有AI则实例化AI")
 	if ai_scene:
 		_ai_instance = ai_scene.instance()
 		_ai_instance.setup(self, battlers)
@@ -161,9 +161,10 @@ func _apply_status_effect(effect) -> void:
 func _set_readiness(value: float) -> void:
 	_readiness = value
 	emit_signal("readiness_changed", _readiness)
-	if _readiness >= 100.0:
-		emit_signal("ready_to_act")
-		set_process(false)
+	# if _readiness >= 100.0:
+	# 	print("*******************************************************")
+	# 	emit_signal("ready_to_act")
+	# 	set_process(false)
 
 
 func _on_BattlerAnim_animation_finished(anim_name) -> void:
@@ -171,8 +172,9 @@ func _on_BattlerAnim_animation_finished(anim_name) -> void:
 
 
 func _on_BattlerStats_health_depleted() -> void:
-	print("状态健康耗尽")
+	# print("状态健康耗尽")
 	set_is_active(false)
 	if not is_party_member:
+		_life_bar.queue_free()
 		set_is_selectable(false)
 		battler_anim.queue_animation("die")

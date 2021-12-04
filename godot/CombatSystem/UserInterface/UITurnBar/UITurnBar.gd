@@ -9,7 +9,7 @@ onready var _anim_player: AnimationPlayer = $AnimationPlayer
 
 
 func setup(battlers: Array) -> void:
-	print("初始化双方头像")
+	# print("初始化双方头像")
 	for battler in battlers:
 		var type: int = (
 			UIBattlerIcon.Types.PLAYER

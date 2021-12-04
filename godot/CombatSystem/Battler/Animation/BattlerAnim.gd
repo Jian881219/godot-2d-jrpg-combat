@@ -23,7 +23,7 @@ onready var anchor_top: Position2D = $TopAnchor
 
 
 func _ready() -> void:
-	print("初始化位置")
+	# print("初始化位置")
 	_position_start = position
 
 

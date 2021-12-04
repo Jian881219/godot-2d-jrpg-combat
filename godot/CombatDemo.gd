@@ -8,10 +8,10 @@ onready var active_turn_queue := $ActiveTurnQueue
 onready var ui_turn_bar := $UI/UITurnBar
 onready var ui_battler_hud_list := $UI/UIBattlerHUDList
 onready var ui_damage_label_builder := $UI/UIDamageLabelBuilder
-
+onready var ui_turn_num := $UI/Label
 
 func _ready() -> void:
-	print("***战斗demo-开始***")
+	# print("***战斗demo-开始***")
 	randomize()
 
 	var battlers: Array = active_turn_queue.battlers
@@ -24,7 +24,8 @@ func _ready() -> void:
 	ui_turn_bar.setup(active_turn_queue.battlers)
 	ui_battler_hud_list.setup(in_party)
 	ui_damage_label_builder.setup(battlers)
-	print("***战斗demo-结束***")
+	active_turn_queue.Battle()
+	# print("***战斗demo-结束***")
 
 
 # Returns an array of `Battler` who are in the same team as `actor`, including `actor`.
@@ -57,7 +58,7 @@ func are_all_fallen(battlers: Array) -> bool:
 
 
 func _on_BattlerStats_health_depleted(actor) -> void:
-	print("所有己方死亡:"+ actor.name)
+	# print("所有己方死亡:"+ actor.name)
 	var team := get_ally_battlers_of(actor)
 	if are_all_fallen(team):
 		end_combat(CombatResult.DEFEAT if actor.is_party_member else CombatResult.VICTORY)
