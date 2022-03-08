@@ -10,3 +10,7 @@ const WEAKNESS_MAPPING = {
 	Elements.DESIGN: Elements.CODE,
 	Elements.BUG: -1,
 }
+
+enum TargetNum {ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, ALL}
+
+enum Target {SELF, ENEMY, PET, ENEMY_PET, ALL}
