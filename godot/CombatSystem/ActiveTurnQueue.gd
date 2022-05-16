@@ -20,7 +20,6 @@ var _party_members := []
 var _opponents := []
 
 var _is_player_playing := false
-var _is_player_turn := false
 
 var running = true
 
@@ -120,14 +119,14 @@ func start_turn() -> void:
 		running = false
 		return
 
-	if _is_player_turn:
+	if _is_player_playing:
 		for battler in _player_queue:
 			yield(_play_turn(battler), "completed")
-		_is_player_turn = false
+		_is_player_playing = false
 	else:
 		for battler in _enemy_queue:
 			yield(_play_turn(battler), "completed")
-		_is_player_turn = true
+		_is_player_playing = true
 	
 
 func _player_select_action_async(battler: Battler) -> ActionData:
