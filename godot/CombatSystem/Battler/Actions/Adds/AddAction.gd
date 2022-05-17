@@ -1,27 +1,31 @@
 # Concrete class for basic damaging attacks. Inflicts direct damage to one or more targets.
-class_name AttackAction
+class_name AddAction
 extends Action
 
 var _hits := []
 
 
-func _init(data: AttackActionData, actor, targets: Array).(data, actor, targets) -> void:
+func _init(data: AddActionData, actor, targets: Array).(data, actor, targets) -> void:
 	pass
 
 
 # Plays the acting battler's attack animation once for each target. Damages each target when the actor's animation emits the `triggered` signal.
 func _apply_async() -> bool:
-	return _attack()
+	return _add()
 
-func _attack() -> bool:
+
+func _add() -> bool:
 	var anim = _actor.battler_anim
-	for target in _targets:
+	var targets = _targets
+
+	if _data.is_targeting_self:
+		targets = [_actor]
+
+	for target in targets:		
 		var status: StatusEffect = StatusEffectBuilder.create_status_effect(
 			target, _data.status_effect
 		)
-		var hit_chance := Formulas.calculate_hit_chance(_data, _actor, target)
-		var damage := calculate_hit_damage(target)
-		var hit := Hit.new(damage, hit_chance, false, status)
+		var hit := Hit.new(5, 1, true, status)
 		anim.connect("triggered", self, "_on_BattlerAnim_triggered", [target, hit])
 		anim.play("attack")
 		yield(_actor, "animation_finished")

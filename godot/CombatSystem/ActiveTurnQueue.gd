@@ -88,7 +88,7 @@ func _play_turn(battler: Battler) -> void:
 		action_data = result.action
 		targets = result.targets
 
-	var action = AttackAction.new(action_data, battler, targets)
+	var action = self.matchAction(action_data, battler, targets)
 	battler.act(action)
 	yield(battler, "action_finished")
 
@@ -98,8 +98,15 @@ func _play_turn(battler: Battler) -> void:
 
 	set_time_scale(1.0)
 
+func matchAction(action_data, battler, targets) -> Action:
+	var action
+	match action_data.action_type:
+		Types.ACTION_TYPE.ATTACK: action = AttackAction.new(action_data, battler, targets)
+		Types.ACTION_TYPE.ADD: action = AddAction.new(action_data, battler, targets)
+	
+	return action
 
-func Battle():
+func Battle() -> void:
 	while(running):
 		yield(start_turn(), "completed")
 

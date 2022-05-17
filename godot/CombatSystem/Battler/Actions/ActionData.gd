@@ -13,10 +13,11 @@ export var energy_cost := 0
 export (Elements) var element := Elements.NONE
 export var is_targeting_self := false
 export var is_targeting_all := false
-export var is_add := false
 export var readiness_saved := 0.0
+export (Types.ACTION_TYPE)var action_type := Types.ACTION_TYPE.ATTACK
 
 
 # Returns `true` if the `battler` has enough energy to use the action.
 func can_be_used_by(battler) -> bool:
 	return energy_cost <= battler.stats.energy
+

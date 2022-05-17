@@ -13,7 +13,7 @@
 [ext_resource path="res://CombatSystem/UserInterface/UITurnBar/UITurnBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UIBattlerHUDList.tscn" type="PackedScene" id=14]
 [ext_resource path="res://CombatSystem/UserInterface/UIActionMenu/UIActionMenu.tscn" type="PackedScene" id=16]
-[ext_resource path="res://CombatSystem/Battler/Actions/Attacks/AddBlood.tres" type="Resource" id=18]
+[ext_resource path="res://CombatSystem/Battler/Actions/Adds/AddBlood.tres" type="Resource" id=18]
 
 [node name="CombatDemo" type="Node2D"]
 script = ExtResource( 11 )

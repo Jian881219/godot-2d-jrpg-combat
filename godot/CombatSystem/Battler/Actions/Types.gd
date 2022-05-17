@@ -11,6 +11,8 @@ const WEAKNESS_MAPPING = {
 	Elements.BUG: -1,
 }
 
+enum ACTION_TYPE {ATTACK,ADD}
+
 enum TargetNum {ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, ALL}
 
 enum Target {SELF, ENEMY, PET, ENEMY_PET, ALL}

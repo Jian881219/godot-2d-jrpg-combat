@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://CombatSystem/ActiveTurnQueue.gd"
 }, {
+"base": "Action",
+"class": "AddAction",
+"language": "GDScript",
+"path": "res://CombatSystem/Battler/Actions/Adds/AddAction.gd"
+}, {
+"base": "ActionData",
+"class": "AddActionData",
+"language": "GDScript",
+"path": "res://CombatSystem/Battler/Actions/Adds/AddActionData.gd"
+}, {
 "base": "BattlerAI",
 "class": "AggressiveBattlerAI",
 "language": "GDScript",
@@ -153,6 +163,8 @@ _global_script_class_icons={
 "Action": "",
 "ActionData": "",
 "ActiveTurnQueue": "",
+"AddAction": "",
+"AddActionData": "",
 "AggressiveBattlerAI": "",
 "AttackAction": "",
 "AttackActionData": "",
