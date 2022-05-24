@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/Progress-Bar-BlueDark.png" type="Texture" id=1]
+[ext_resource path="res://ui/Progress-Bar-Red.png" type="Texture" id=2]
+[ext_resource path="res://ui/png/faceset-b.png" type="Texture" id=3]
+[ext_resource path="res://ui/Progress-Bar-Blue.png" type="Texture" id=5]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1617.0
+margin_bottom = -975.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+texture = ExtResource( 3 )
+stretch_mode = 1
+flip_h = true
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 100.0
+margin_top = 5.0
+margin_right = 300.0
+margin_bottom = 25.0
+value = 45.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+nine_patch_stretch = true
+
+[node name="Label" type="Label" parent="TextureProgress"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "20/100"
+align = 1
+valign = 1
+
+[node name="TextureProgress2" type="TextureProgress" parent="."]
+margin_left = 100.0
+margin_top = 35.0
+margin_right = 300.0
+margin_bottom = 55.0
+value = 48.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 5 )
+nine_patch_stretch = true
+
+[node name="Label" type="Label" parent="TextureProgress2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "89/100"
+align = 1
+valign = 1
