@@ -9,6 +9,7 @@ export var is_ticking := false
 export var ticking_interval := 4.0
 export var ticking_damage := 3
 export var is_add := false
+export(String) var img := ""
 
 func calculate_total_damage() -> int:
 	var damage := 0

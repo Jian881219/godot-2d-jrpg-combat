@@ -2,7 +2,6 @@
 
 [ext_resource path="res://CombatSystem/Battler/Actions/StatusEffects/StatusEffectData.gd" type="Script" id=1]
 
-
 [resource]
 script = ExtResource( 1 )
 effect = "haste"
@@ -12,3 +11,5 @@ effect_rate = 0.5
 is_ticking = false
 ticking_interval = 4.0
 ticking_damage = 3
+is_add = false
+img = "res://ui/effect/icon_64x64_1.png"

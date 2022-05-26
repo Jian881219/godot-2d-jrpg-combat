@@ -14,7 +14,12 @@ const NON_STACKING_EFFECTS := ["haste", "slow"]
 var time_scale := 1.0 setget set_time_scale
 var is_active := true setget set_is_active
 
+onready var ui_effect_list := $"../BattlerUI/GridContainer"
+const preEffectUI: PackedScene = preload("res://CombatSystem/UserInterface/UIDamageLabel/EffectUI.tscn")
+var effectUI
 
+func _read():
+	effectUI = preEffectUI.instance()
 # Adds a new instance of a status effect as a child, ensuring the effects don't stack past
 # `MAX_STACKS`.
 # 添加buff
@@ -24,8 +29,25 @@ func add(effect: StatusEffect) -> void:
 			_remove_effect_expiring_the_soonest(effect.id)
 	elif has_node(effect.name):
 		get_node(effect.name).expire()
+	if !_has_same_icon(effect):
+		add_icon(effect)
+	effectUI.turn_left = int(effectUI.turn_left) + 1
 	add_child(effect)
 
+
+func add_icon(effect: StatusEffect) -> void:
+	var _icon := load(effect.img) as Texture
+	effectUI = preEffectUI.instance()
+	effectUI.id = effect.id
+	effectUI.get_node("TextureRect").texture = _icon
+	
+	ui_effect_list.add_child(effectUI)
+
+func _has_same_icon(effect: StatusEffect) -> bool:
+	for row in ui_effect_list.get_children():
+		if row.id == effect.id:
+			return true
+	return false
 
 # Removes all stacks of an effect of a given type.
 # 根据id删除buff
@@ -40,6 +62,7 @@ func remove_type(id: String) -> void:
 func remove_all() -> void:
 	for effect in get_children():
 		effect.expire()
+	ui_effect_list.queue_free()
 
 
 # 刷新buff时间

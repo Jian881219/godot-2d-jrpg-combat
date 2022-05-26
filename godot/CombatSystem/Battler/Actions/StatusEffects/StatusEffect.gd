@@ -19,6 +19,7 @@ var _time_left: float = -INF
 var _ticking_clock := 0.0
 var _can_stack := false
 
+var img : String = ""
 
 # target: Battler
 # data: StatusEffectData
@@ -29,6 +30,7 @@ func _init(target, data) -> void:
 	is_ticking = data.is_ticking
 	ticking_interval = data.ticking_interval
 	_ticking_clock = ticking_interval
+	img = data.img
 
 
 func _ready() -> void:

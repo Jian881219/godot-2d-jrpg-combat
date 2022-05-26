@@ -68,9 +68,6 @@ value = 22.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="."]
 

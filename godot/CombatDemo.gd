@@ -8,7 +8,7 @@ onready var active_turn_queue := $ActiveTurnQueue
 onready var ui_turn_bar := $UI/UITurnBar
 onready var ui_battler_hud_list := $UI/UIBattlerHUDList
 onready var ui_damage_label_builder := $UI/UIDamageLabelBuilder
-onready var ui_turn_num := $UI/Label
+onready var ui_effect_list := $UI/Label
 
 func _ready() -> void:
 	# print("***战斗demo-开始***")

@@ -12,3 +12,4 @@ is_ticking = true
 ticking_interval = 6.0
 ticking_damage = 2
 is_add = false
+img = "res://ui/effect/icon/icon_64x64_138.png"
