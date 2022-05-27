@@ -34,6 +34,7 @@ scale = Vector2( -1, -1 )
 scale = Vector2( -1, 1 )
 
 [node name="Sprite" type="Sprite" parent="BattlerAnim/Pivot" index="1"]
+visible = false
 scale = Vector2( -1, 1 )
 texture = ExtResource( 5 )
 offset = Vector2( -1.42499e-05, -163 )
@@ -44,11 +45,6 @@ position = Vector2( -159.735, -85.7196 )
 
 [node name="TopAnchor" parent="BattlerAnim" index="2"]
 position = Vector2( 0, -357.713 )
-
-[node name="BattlerUI" parent="BattlerAnim" index="4"]
-margin_left = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
 
 [node name="StatusEffectContainer" type="Node" parent="."]
 script = ExtResource( 9 )

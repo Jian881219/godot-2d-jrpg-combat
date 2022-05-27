@@ -14,11 +14,11 @@ const NON_STACKING_EFFECTS := ["haste", "slow"]
 var time_scale := 1.0 setget set_time_scale
 var is_active := true setget set_is_active
 
-onready var ui_effect_list := $"../BattlerUI/GridContainer"
+onready var ui_effect_list := $"../BattlerAnim/Pivot/BattlerUI/GridContainer"
 const preEffectUI: PackedScene = preload("res://CombatSystem/UserInterface/UIDamageLabel/EffectUI.tscn")
 var effectUI
 
-func _read():
+func _ready():
 	effectUI = preEffectUI.instance()
 # Adds a new instance of a status effect as a child, ensuring the effects don't stack past
 # `MAX_STACKS`.
@@ -29,9 +29,9 @@ func add(effect: StatusEffect) -> void:
 			_remove_effect_expiring_the_soonest(effect.id)
 	elif has_node(effect.name):
 		get_node(effect.name).expire()
-#	if !_has_same_icon(effect):
-#		add_icon(effect)
-#	effectUI.turn_left = int(effectUI.turn_left) + 1
+	if !_has_same_icon(effect):
+		add_icon(effect)
+	effectUI.turn_left = int(effectUI.turn_left) + 1
 	add_child(effect)
 
 
