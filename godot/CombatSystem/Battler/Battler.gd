@@ -41,10 +41,7 @@ onready var battler_anim: BattlerAnim = $BattlerAnim
 
 onready var _status_effect_container: StatusEffectContainer = $StatusEffectContainer
 onready var _life_bar: TextureProgress = $UILifeBar
-onready var _battler_ui: Control = $BattlerUI
-onready var _ui_life_bar: TextureProgress = $BattlerUI/RedBar
-onready var _ui_life_text: Label = $BattlerUI/RedBar/Label
-onready var _ui_battler_anim: BattlerAnim = $BattlerUI/BattlerAnim
+onready var _babattler_animttler_ui: Control = $BattlerAnim/Pivot/BattlerUI
 
 func _ready() -> void:
 	# print("初始化双方状态信息")
@@ -53,9 +50,10 @@ func _ready() -> void:
 	stats.reinitialize()
 	if _life_bar != null:
 		_life_bar.setup(stats.max_health, stats.max_health)
-	_ui_life_bar.value = 100
-	_ui_life_text.text = str(stats.max_health) + "/" + str(stats.max_health)
 	stats.connect("health_depleted", self, "_on_BattlerStats_health_depleted")
+	battler_anim.set_max_health(stats.max_health)
+	battler_anim.set_health(stats.health)
+	battler_anim.set_life_text(stats.max_health)
 
 
 func _process(delta: float) -> void:
@@ -79,10 +77,6 @@ func act(action) -> void:
 	stats.energy -= action.get_energy_cost()
 	yield(action.apply_async(), "completed")
 	battler_anim.move_back()
-	_ui_battler_anim.move_back()
-	_ui_battler_anim.move_forward()
-	_ui_battler_anim.play("take_damage")
-	_ui_battler_anim.queue_animation("die")
 	_set_readiness(action.get_readiness_saved())
 	if is_active:
 		set_process(true)
@@ -154,8 +148,8 @@ func _take_damage(amount: int) -> void:
 		battler_anim.play("take_damage")
 	if _life_bar != null:
 		_life_bar.setup(stats.health, stats.max_health)
-	_ui_life_bar.value = stats.health / stats.max_health * 100
-	_ui_life_text.text = str(stats.max_health) + "/" + str(stats.max_health)
+	battler_anim.set_health(stats.health)
+	battler_anim.set_life_text(stats.health)
 
 
 func _take_add(amount: int) -> void:
@@ -165,8 +159,8 @@ func _take_add(amount: int) -> void:
 		stats.health += amount
 	if _life_bar != null:
 		_life_bar.setup(stats.health, stats.max_health)
-	_ui_life_bar.value = stats.health / stats.max_health * 100
-	_ui_life_text.text = str(stats.max_health) + "/" + str(stats.max_health)
+	battler_anim.update_health(stats.health)
+	battler_anim.set_life_text(stats.health)
 
 # effect: StatusEffect
 func _apply_status_effect(effect) -> void:

@@ -21,6 +21,35 @@ onready var tween: Tween = $Tween
 onready var anchor_front: Position2D = $FrontAnchor
 onready var anchor_top: Position2D = $TopAnchor
 
+export var id: String = ""
+
+onready var _ui_life_bar: TextureProgress = $Pivot/BattlerUI/RedBar
+onready var _ui_life_bar_label: Label = $Pivot/BattlerUI/RedBar/Label
+
+export var max_health := 1 setget set_max_health
+export var health := 0 setget set_health
+
+
+func set_max_health(value) -> void:
+	max_health = value
+	_ui_life_bar.value = 100
+
+
+func set_health(value) -> void:
+	health = value
+	_ui_life_bar.value = health * 100 / max_health
+
+
+func update_health(value):
+	yield(get_tree().create_timer(0.1), "timeout")
+	tween.interpolate_property(self, "health", health, value, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+
+
+func set_life_text(value) -> void :
+	_ui_life_bar_label.text = str(value) + "/" + str(max_health)
+
 
 func _ready() -> void:
 	# print("初始化位置")

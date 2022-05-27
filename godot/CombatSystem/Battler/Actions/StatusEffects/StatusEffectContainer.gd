@@ -29,9 +29,9 @@ func add(effect: StatusEffect) -> void:
 			_remove_effect_expiring_the_soonest(effect.id)
 	elif has_node(effect.name):
 		get_node(effect.name).expire()
-	if !_has_same_icon(effect):
-		add_icon(effect)
-	effectUI.turn_left = int(effectUI.turn_left) + 1
+#	if !_has_same_icon(effect):
+#		add_icon(effect)
+#	effectUI.turn_left = int(effectUI.turn_left) + 1
 	add_child(effect)
 
 
