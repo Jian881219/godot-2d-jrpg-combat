@@ -31,9 +31,6 @@ ui_data = SubResource( 1 )
 rotation = -3.14159
 scale = Vector2( -1, -1 )
 
-[node name="Pivot" parent="BattlerAnim" index="0"]
-scale = Vector2( -1, 1 )
-
 [node name="robi" type="Sprite" parent="BattlerAnim/Pivot" index="1"]
 visible = false
 texture = ExtResource( 5 )

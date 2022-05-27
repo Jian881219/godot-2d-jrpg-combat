@@ -31,16 +31,15 @@ UIActionMenuScene = ExtResource( 16 )
 SelectArrow = ExtResource( 4 )
 
 [node name="Bear" parent="ActiveTurnQueue" instance=ExtResource( 9 )]
-position = Vector2( 1517, 782 )
+position = Vector2( 1551, 345 )
+scale = Vector2( -1, 1 )
 actions = [ ExtResource( 8 ), ExtResource( 18 ) ]
 
 [node name="BugCat" parent="ActiveTurnQueue" instance=ExtResource( 6 )]
-position = Vector2( 605, 582 )
-scale = Vector2( -1, 1 )
+position = Vector2( 536, 336 )
 
 [node name="BugCat2" parent="ActiveTurnQueue" instance=ExtResource( 6 )]
-position = Vector2( 612, 762 )
-scale = Vector2( -1, 1 )
+position = Vector2( 531, 615 )
 stats = ExtResource( 7 )
 
 [node name="UI" type="CanvasLayer" parent="."]
