@@ -5,7 +5,7 @@ extends Action
 var _hits := []
 
 
-func _init(data: AddActionData, actor, targets: Array).(data, actor, targets) -> void:
+func _init(data: ActionData, actor, targets: Array).(data, actor, targets) -> void:
 	pass
 
 

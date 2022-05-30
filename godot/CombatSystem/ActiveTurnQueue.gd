@@ -157,17 +157,17 @@ func _player_select_targets_async(_action: ActionData, opponents: Array) -> Arra
 	return targets
 
 
-# func _on_player_turn_finished() -> void:
-# 	# print("--玩家回合结束--")
-# 	if _queue_player.empty():
-# 		_is_player_playing = false
-# 	else:
-# 		_play_turn(_queue_player.pop_front())
-
-
-# func _on_Battler_ready_to_act(battler: Battler) -> void:
-# 	# print("准备行动:"+ battler.name)
-# 	if battler.is_player_controlled() and _is_player_playing:
-# 		_queue_player.append(battler)
-# 	else:
-# 		_play_turn(battler)
+#func _on_player_turn_finished() -> void:
+#		# print("--玩家回合结束--")
+#	if _queue_player.empty():
+#		 _is_player_playing = false
+#	else:
+#		_play_turn(_queue_player.pop_front())
+#
+#
+#func _on_Battler_ready_to_act(battler: Battler) -> void:
+#	# print("准备行动:"+ battler.name)
+#	if battler.is_player_controlled() and _is_player_playing:
+#		_queue_player.append(battler)
+#	else:
+#		_play_turn(battler)
