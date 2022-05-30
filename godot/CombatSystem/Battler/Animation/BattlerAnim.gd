@@ -18,26 +18,50 @@ var _position_start := Vector2.ZERO
 onready var anim_player: AnimationPlayer = $Pivot/AnimationPlayer
 onready var anim_player_damage: AnimationPlayer = $Pivot/AnimationPlayerDamage
 onready var tween: Tween = $Tween
-onready var anchor_front: Position2D = $FrontAnchor
-onready var anchor_top: Position2D = $TopAnchor
+#onready var anchor_front: Position2D = $FrontAnchor
+#onready var anchor_top: Position2D = $TopAnchor
+onready var battler_ui := $Pivot/BattlerUI
 
 export var id: String = ""
 
 onready var _ui_life_bar: TextureProgress = $Pivot/BattlerUI/RedBar
 onready var _ui_life_bar_label: Label = $Pivot/BattlerUI/RedBar/Label
+onready var _ui_skill:AnimationPlayer = $Pivot/BattlerUI/RedBar/Node2D/AnimationPlayer
+onready var _ui_skill_sprite:Sprite = $Pivot/BattlerUI/RedBar/Node2D/Sprite
 
 export var max_health := 1 setget set_max_health
 export var health := 0 setget set_health
+export(bool) var is_party: bool = false setget set_party
 
+
+func _ready() -> void:
+	# print("初始化位置")
+	_position_start = position
+
+func act_skill():
+	var rand : int = rand_range(1,8)
+	_ui_skill_sprite.show()
+	_ui_skill.play("run" + str(rand))
+	yield(_ui_skill, "animation_finished")
+	_ui_skill_sprite.hide()
+	
+
+func set_party(value:bool) -> void:
+	is_party = value
+	if is_party :
+		_ui_life_bar_label.rect_scale = Vector2(-1, 1)
+		_ui_life_bar_label.rect_position = Vector2(-500, 0)
 
 func set_max_health(value) -> void:
 	max_health = value
-	_ui_life_bar.value = 100
+	if _ui_life_bar != null:
+		_ui_life_bar.value = float(100)
 
 
 func set_health(value) -> void:
 	health = value
-	_ui_life_bar.value = health * 100 / max_health
+	assert(_ui_life_bar)
+	_ui_life_bar.value = float(health) * 100 / float(max_health)
 
 
 func update_health(value):
@@ -49,11 +73,6 @@ func update_health(value):
 
 func set_life_text(value) -> void :
 	_ui_life_bar_label.text = str(value) + "/" + str(max_health)
-
-
-func _ready() -> void:
-	# print("初始化位置")
-	_position_start = position
 
 
 func play(anim_name: String) -> void:
@@ -75,11 +94,11 @@ func queue_animation(anim_name: String) -> void:
 
 
 func get_front_anchor_global_position() -> Vector2:
-	return anchor_front.global_position
+	return _ui_life_bar.rect_global_position +  _ui_life_bar.rect_size
 
 
 func get_top_anchor_global_position() -> Vector2:
-	return anchor_top.global_position
+	return _ui_life_bar.rect_global_position +  _ui_life_bar.rect_size
 
 
 func move_forward() -> void:

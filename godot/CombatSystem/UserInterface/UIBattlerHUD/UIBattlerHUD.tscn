@@ -132,9 +132,6 @@ margin_bottom = 156.0
 theme = ExtResource( 3 )
 texture = ExtResource( 5 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UILifeBar" parent="." instance=ExtResource( 7 )]
 margin_left = -387.488

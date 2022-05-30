@@ -7,14 +7,14 @@
 [node name="UIBattlerIcon" type="TextureRect"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -68.0
-margin_right = 132.0
-margin_bottom = 68.0
+margin_left = -1.0
+margin_top = -540.0
+margin_right = 131.0
+margin_bottom = -404.0
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 icon = ExtResource( 4 )
 type = 1

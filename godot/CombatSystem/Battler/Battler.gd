@@ -40,20 +40,22 @@ var _ai_instance = null
 onready var battler_anim: BattlerAnim = $BattlerAnim
 
 onready var _status_effect_container: StatusEffectContainer = $StatusEffectContainer
-onready var _life_bar: TextureProgress = $UILifeBar
-onready var _babattler_animttler_ui: Control = $BattlerAnim/Pivot/BattlerUI
+#onready var _life_bar: TextureProgress = $UILifeBar
+
 
 func _ready() -> void:
 	# print("初始化双方状态信息")
 	assert(stats is BattlerStats)
 	stats = stats.duplicate()
 	stats.reinitialize()
-	if _life_bar != null:
-		_life_bar.setup(stats.max_health, stats.max_health)
+#	if _life_bar != null:
+#		_life_bar.setup(stats.max_health, stats.max_health)
 	stats.connect("health_depleted", self, "_on_BattlerStats_health_depleted")
 	battler_anim.set_max_health(stats.max_health)
 	battler_anim.set_health(stats.health)
 	battler_anim.set_life_text(stats.max_health)
+	battler_anim.set_party(is_party_member)
+	
 
 
 func _process(delta: float) -> void:
@@ -143,11 +145,12 @@ func set_is_selectable(value) -> void:
 
 
 func _take_damage(amount: int) -> void:
+	battler_anim.act_skill()
 	stats.health -= amount
 	if stats.health > 0:
 		battler_anim.play("take_damage")
-	if _life_bar != null:
-		_life_bar.setup(stats.health, stats.max_health)
+#	if _life_bar != null:
+#		_life_bar.setup(stats.health, stats.max_health)
 	battler_anim.set_health(stats.health)
 	battler_anim.set_life_text(stats.health)
 
@@ -157,8 +160,8 @@ func _take_add(amount: int) -> void:
 		stats.health = stats.max_health
 	else:
 		stats.health += amount
-	if _life_bar != null:
-		_life_bar.setup(stats.health, stats.max_health)
+#	if _life_bar != null:
+#		_life_bar.setup(stats.health, stats.max_health)
 	battler_anim.update_health(stats.health)
 	battler_anim.set_life_text(stats.health)
 
@@ -171,7 +174,6 @@ func _set_readiness(value: float) -> void:
 	_readiness = value
 	emit_signal("readiness_changed", _readiness)
 	# if _readiness >= 100.0:
-	# 	print("*******************************************************")
 	# 	emit_signal("ready_to_act")
 	# 	set_process(false)
 
@@ -184,6 +186,6 @@ func _on_BattlerStats_health_depleted() -> void:
 	# print("状态健康耗尽")
 	set_is_active(false)
 	if not is_party_member:
-		_life_bar.queue_free()
+#		_life_bar.queue_free()
 		set_is_selectable(false)
 		battler_anim.queue_animation("die")

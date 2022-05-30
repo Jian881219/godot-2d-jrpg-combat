@@ -6,9 +6,9 @@ enum CombatResult { DEFEAT, VICTORY }
 
 onready var active_turn_queue := $ActiveTurnQueue
 onready var ui_turn_bar := $UI/UITurnBar
-onready var ui_battler_hud_list := $UI/UIBattlerHUDList
+#onready var ui_battler_hud_list := $UI/UIBattlerHUDList
 onready var ui_damage_label_builder := $UI/UIDamageLabelBuilder
-onready var ui_effect_list := $UI/Label
+#onready var ui_effect_list := $UI/Label
 
 func _ready() -> void:
 	# print("***战斗demo-开始***")
@@ -22,7 +22,7 @@ func _ready() -> void:
 			in_party.append(battler)
 
 	ui_turn_bar.setup(active_turn_queue.battlers)
-	ui_battler_hud_list.setup(in_party)
+#	ui_battler_hud_list.setup(in_party)
 	ui_damage_label_builder.setup(battlers)
 	active_turn_queue.Battle()
 	# print("***战斗demo-结束***")
@@ -40,7 +40,7 @@ func get_ally_battlers_of(actor) -> Array:
 func end_combat(result: int) -> void:
 	active_turn_queue.is_active = false
 	ui_turn_bar.fade_out()
-	ui_battler_hud_list.fade_out()
+#	ui_battler_hud_list.fade_out()
 
 	var message := "Victory" if result == CombatResult.VICTORY else "Defeat"
 	emit_signal("combat_ended", message)

@@ -19,7 +19,7 @@ export var base_speed := 70.0 setget set_base_speed
 export var base_hit_chance := 100.0 setget set_base_hit_chance
 export var base_evasion := 0.0 setget set_base_evasion
 
-export var weaknesses := []
+#export var weaknesses := []
 export (Types.Elements) var affinity: int = Types.Elements.NONE
 
 var health := max_health setget set_health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://CombatSystem/Battler/Actions/Attacks/Punch.tres" type="Resource" id=1]
 [ext_resource path="res://CombatSystem/Battler/Actions/Attacks/SuperPunch.tres" type="Resource" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://CombatSystem/Battler/BattlerUIData.gd" type="Script" id=7]
 [ext_resource path="res://CombatSystem/Battler/Animation/BattlerAnim.tscn" type="PackedScene" id=8]
 [ext_resource path="res://CombatSystem/Battler/Actions/StatusEffects/StatusEffectContainer.gd" type="Script" id=9]
-[ext_resource path="res://CombatSystem/UserInterface/UIBattlerHUD/UILifeBar/UILifeBar.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 7 )
@@ -30,26 +29,6 @@ ui_data = SubResource( 1 )
 [node name="BattlerAnim" parent="." instance=ExtResource( 8 )]
 rotation = -3.14159
 scale = Vector2( -1, -1 )
-
-[node name="robi" type="Sprite" parent="BattlerAnim/Pivot" index="1"]
-visible = false
-texture = ExtResource( 5 )
-offset = Vector2( -1.90735e-06, -185 )
-
-[node name="FrontAnchor" parent="BattlerAnim" index="1"]
-position = Vector2( -184.084, -123.471 )
-
-[node name="TopAnchor" parent="BattlerAnim" index="2"]
-position = Vector2( 0, -366.364 )
-
-[node name="UILifeBar" parent="." instance=ExtResource( 11 )]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -163.0
-margin_top = -10.5
-margin_right = 163.0
-margin_bottom = 10.5
 
 [node name="StatusEffectContainer" type="Node" parent="."]
 script = ExtResource( 9 )

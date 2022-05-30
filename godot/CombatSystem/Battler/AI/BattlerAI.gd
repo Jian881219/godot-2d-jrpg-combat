@@ -13,7 +13,7 @@ var _party := []
 var _opponents := []
 
 # For each Action key, stores an array of opponents that are weak to this action.
-var _weaknesses_dict := {}
+#var _weaknesses_dict := {}
 
 
 func setup(actor: Battler, battlers: Array) -> void:
@@ -25,7 +25,7 @@ func setup(actor: Battler, battlers: Array) -> void:
 			_opponents.append(battler)
 		else:
 			_party.append(battler)
-	_calculate_weaknesses()
+#	_calculate_weaknesses()
 
 
 # Returns a dictionary representing an action and its targets.
@@ -95,8 +95,8 @@ func _get_battler_with_lowest_health(battlers: Array) -> Battler:
 	return weakest
 
 
-func _is_weak_to(battler: Battler, action: ActionData) -> bool:
-	return action.element in battler.stats.weaknesses
+#func _is_weak_to(battler: Battler, action: ActionData) -> bool:
+#	return action.element in battler.stats.weaknesses
 
 
 func _count_fallen_party() -> int:
@@ -140,13 +140,13 @@ func _is_health_above(battler: Battler, ratio: float) -> bool:
 
 
 # Initializes the `_weaknesses_dict`
-func _calculate_weaknesses() -> void:
-	# print("计算虚弱目标")
-	for action in _actor.actions:
-		_weaknesses_dict[action] = []
-		for opponent in _opponents:
-			if _is_weak_to(opponent, action):
-				_weaknesses_dict[action].append(opponent)
+#func _calculate_weaknesses() -> void:
+#	# print("计算虚弱目标")
+#	for action in _actor.actions:
+#		_weaknesses_dict[action] = []
+#		for opponent in _opponents:
+#			if _is_weak_to(opponent, action):
+#				_weaknesses_dict[action].append(opponent)
 
 
 # Returns an Array of the actions the agent can use this turn.

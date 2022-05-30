@@ -23,12 +23,16 @@ var _is_player_playing := false
 
 var running = true
 
-onready var battlers := get_children()
+var battlers := []
+
+func get_battlers():
+	battlers = get_children()
 
 
 func _ready() -> void:
 	# print("***初始化回合战斗队列-开始***")
 	# connect("player_turn_finished", self, "_on_player_turn_finished")
+	get_battlers()
 	for battler in battlers:
 		battler.setup(battlers)
 		# battler.connect("ready_to_act", self, "_on_Battler_ready_to_act", [battler])
