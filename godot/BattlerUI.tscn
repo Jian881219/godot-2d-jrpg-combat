@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/Progress-Bar-BlueDark.png" type="Texture" id=1]
 [ext_resource path="res://ui/Progress-Bar-Red.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/Progress-Bar-Blue.png" type="Texture" id=5]
 [ext_resource path="res://CombatSystem/Scenes/skill01.tscn" type="PackedScene" id=6]
 [ext_resource path="res://BattlerUI.gd" type="Script" id=7]
+[ext_resource path="res://ui/png/BlueDark-Button.png" type="Texture" id=8]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -24,11 +25,25 @@ texture = ExtResource( 3 )
 stretch_mode = 1
 flip_h = true
 
+[node name="Name" type="TextureRect" parent="."]
+margin_left = 100.0
+margin_right = 300.0
+margin_bottom = 20.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="Label" type="Label" parent="Name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
+text = "Sprite"
+
 [node name="RedBar" type="TextureProgress" parent="."]
 margin_left = 100.0
-margin_top = 5.0
+margin_top = 23.0
 margin_right = 300.0
-margin_bottom = 25.0
+margin_bottom = 43.0
 value = 45.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
@@ -46,9 +61,9 @@ valign = 1
 
 [node name="BlueBar" type="TextureProgress" parent="."]
 margin_left = 100.0
-margin_top = 35.0
+margin_top = 47.0
 margin_right = 300.0
-margin_bottom = 55.0
+margin_bottom = 67.0
 value = 48.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 5 )
@@ -62,9 +77,9 @@ align = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 100.0
-margin_top = 56.0
+margin_top = 70.0
 margin_right = 300.0
-margin_bottom = 96.0
+margin_bottom = 110.0
 columns = 8
 
 [node name="Tween" type="Tween" parent="."]

@@ -31,7 +31,7 @@ UIActionMenuScene = ExtResource( 16 )
 SelectArrow = ExtResource( 4 )
 
 [node name="Bear" parent="ActiveTurnQueue" instance=ExtResource( 9 )]
-position = Vector2( 1551, 345 )
+position = Vector2( 1506, 330 )
 scale = Vector2( -1, 1 )
 actions = [ ExtResource( 8 ), ExtResource( 18 ) ]
 

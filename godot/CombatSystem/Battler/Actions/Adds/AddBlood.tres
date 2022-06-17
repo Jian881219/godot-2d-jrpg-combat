@@ -7,7 +7,6 @@
 script = ExtResource( 1 )
 label = "Add"
 energy_cost = 0
-element = 0
 is_targeting_self = true
 is_targeting_all = false
 readiness_saved = 0.0

@@ -5,7 +5,7 @@ extends Action
 var _hits := []
 
 
-func _init(data: ActionData, actor, targets: Array).(data, actor, targets) -> void:
+func _init(data: AddActionData, actor, targets: Array).(data, actor, targets) -> void:
 	pass
 
 
@@ -44,8 +44,8 @@ func get_damage_multiplier() -> float:
 	return _data.damage_multiplier
 
 
-func get_element() -> int:
-	return _data.element
+#func get_element() -> int:
+#	return _data.element
 
 
 func get_hit_chance() -> int:

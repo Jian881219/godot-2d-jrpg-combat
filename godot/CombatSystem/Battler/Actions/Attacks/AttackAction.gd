@@ -40,8 +40,8 @@ func get_damage_multiplier() -> float:
 	return _data.damage_multiplier
 
 
-func get_element() -> int:
-	return _data.element
+#func get_element() -> int:
+#	return _data.element
 
 
 func get_hit_chance() -> int:

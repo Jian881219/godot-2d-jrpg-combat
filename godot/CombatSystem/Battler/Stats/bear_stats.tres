@@ -11,4 +11,3 @@ base_defense = 8.0
 base_speed = 28.0
 base_hit_chance = 100.0
 base_evasion = 20.0
-affinity = 1

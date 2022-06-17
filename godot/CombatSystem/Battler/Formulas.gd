@@ -24,9 +24,9 @@ static func calculate_base_damage(action_data, attacker, defender) -> int:
 static func calculate_hit_chance(action_data, attacker, defender) -> float:
 	var chance: float = attacker.stats.hit_chance - defender.stats.evasion
 	chance *= action_data.hit_chance / 100.0
-	var element: int = action_data.element
-	if element == attacker.stats.affinity:
-		chance += 5.0
+#	var element: int = action_data.element
+#	if element == attacker.stats.affinity:
+#		chance += 5.0
 #	if element != Types.Elements.NONE:
 #		if Types.WEAKNESS_MAPPING[element] in defender.stats.weaknesses:
 #			chance += 10.0
@@ -40,7 +40,7 @@ static func calculate_hit_chance(action_data, attacker, defender) -> float:
 # - 1.0 otherwise
 static func _calculate_weakness_multiplier(action_data, defender) -> float:
 	var multiplier := 1.0
-	var element: int = action_data.element
+#	var element: int = action_data.element
 #	if element != Types.Elements.NONE:
 #		if Types.WEAKNESS_MAPPING[defender.stats.affinity] == element:
 #			multiplier = 0.75
